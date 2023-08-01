@@ -396,6 +396,26 @@
 </html>
 
 <script>
+  fetch('/.netlify/functions/events')
+          .then(response => response.json())
+          .then(events => {
+            events.sort((a, b) => new Date(a.startTime) - new Date(b.startTime)); // Sort events
+            const eventWrapper = document.getElementById('event-wrapper');
+            events.forEach(event => {
+              const a = document.createElement('a');
+              a.className = 'event';
+              a.href = event.url;
+              a.target = '_blank';
+              a.innerHTML = `
+          <h2>${event.name}</h2>
+          <span>${new Date(event.startTime).toLocaleString()}</span>
+          <span>${event.location}</span>
+          <i class="fas fa-arrow-right"></i>
+        `;
+              eventWrapper.appendChild(a);
+            });
+          })
+          .catch(error => console.log("error"));
   fetch('/event')
           .then(response => response.json())
           .then(events => {
