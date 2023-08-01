@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.static('static'));
 
 
-app.get('/event', async function(req, res) {
+app.get('/.netlify/functions/event', async function(req, res) {
     const pageId = process.env.FACEBOOK_PAGE_ID; // page ID
     const accessToken = process.env.FACEBOOK_ACCESS_TOKEN; //access token
 
