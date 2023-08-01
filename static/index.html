@@ -396,7 +396,7 @@
 </html>
 
 <script>
-  fetch('/.netlify/functions/events')
+  fetch('/.netlify/functions/event')
           .then(response => response.json())
           .then(events => {
             events.sort((a, b) => new Date(a.startTime) - new Date(b.startTime)); // Sort events
