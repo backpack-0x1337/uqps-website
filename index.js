@@ -1,5 +1,5 @@
 const express = require('express');
-const axios = require('axios');
+const serverless = require('serverless-http');
 require('dotenv').config()
 
 const app = express();
@@ -11,4 +11,6 @@ app.use(cors());
 app.use(express.static('static'));
 
 
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+module.exports.handler = serverless(app);
